@@ -1,0 +1,12 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<GridPane
+          xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER" hgap="10" vgap="10">
+
+    <Button fx:id="btn1" alignment="center" text="press"  GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+    <Button fx:id="items_label" text="Items" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Button fx:id="items_label2" text="Items" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+</GridPane>
