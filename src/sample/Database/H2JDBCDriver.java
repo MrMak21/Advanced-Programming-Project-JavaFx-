@@ -241,6 +241,30 @@ public class H2JDBCDriver {
         return null;
     }
 
+    public ArrayList<Trader> getAllTraders() {
+        String sql = "SELECT * FROM TRADERS";
+        ArrayList<Trader> traders = new ArrayList<>();
+
+        ResultSet rs = executeQuery(sql);
+        try {
+            while (rs.next()) {
+                String id = rs.getString("ID");
+                String traderName = rs.getString("TRADERNAME");
+                String traderCompany = rs.getString("TRADERCOMPANY");
+
+                traders.add(new Trader(id,traderName,traderCompany));
+            }
+
+            stmt.close();
+            conn.close();
+
+            return traders;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Purchase getPurchaseFromId(String id) {
         String sql = "SELECT * FROM PURCHASES WHERE PURCHASES.ID = '" + id + "'";
         ResultSet rs = executeQuery(sql);
