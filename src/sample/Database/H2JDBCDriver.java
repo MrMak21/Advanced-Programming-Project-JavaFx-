@@ -8,6 +8,7 @@ import sample.Utils.StatusUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class H2JDBCDriver {
 
@@ -380,6 +381,10 @@ public class H2JDBCDriver {
                 " VALUES ('" + purchase.getId() +"','" + purchase.getmTrader().getId() +"'," + StatusUtils.fromStatus(purchase.getStatus())+ "," + null + "," + null + "," + ")";
 
         executeUpdateWrapper(sql);
+        for (Item item : purchase.getItemList()) {
+            PurchaseLine line = new PurchaseLine(UUID.randomUUID().toString(),item.getId(),purchase.getId());
+            addPurchaseLine(line);
+        }
     }
 
     public void addPurchaseLine(PurchaseLine line) {

@@ -65,7 +65,7 @@ public class TraderManager {
                 } else {
                     Trader tr = new Trader(UUID.randomUUID().toString(),traderName.getText(),traderCompany.getText());
                     db.addTrader(tr);
-                    MainScreenManager mgr = new MainScreenManager(stage, db); //Go to main screen
+                    MainScreenManager mgr = new MainScreenManager(stage); //Go to main screen
                 }
             }
         });

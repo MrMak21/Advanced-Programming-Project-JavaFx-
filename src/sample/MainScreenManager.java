@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import sample.Database.H2JDBCDriver;
-import sample.Entities.Purchase;
 import sample.Entities.Trader;
 import sample.Utils.DBUtils;
 
@@ -23,18 +22,21 @@ public class MainScreenManager {
     private Parent root;
     H2JDBCDriver db;
 
-    private Button btnTrader;
+    private Button btnTrader,btnItem,btnOrder;
 
-    public MainScreenManager(Stage stage, H2JDBCDriver db) {
+    public MainScreenManager(Stage stage) {
         this.stage = stage;
-        this.db = db;
         initializeViews();
     }
 
     private void initializeViews() {
         setUpView();
+        db = DBUtils.getDb();
         root = stage.getScene().getRoot();
         btnTrader = (Button) root.lookup("#btn_New_Trader");
+        btnItem = (Button) root.lookup("#btn_New_Item");
+        btnOrder = (Button) root.lookup("#btn_New_Order");
+
 
         ListView<Trader> list = (ListView<Trader>) root.lookup("#list");
         list.getItems().addAll(db.getAllTraders());
@@ -61,6 +63,14 @@ public class MainScreenManager {
             public void handle(ActionEvent event) {
                 TraderManager traderManager = new TraderManager(stage); //Go to new trader screen
             }
+        });
+
+        btnItem.setOnAction(v -> {
+            ItemManager mng = new ItemManager(stage); //Go to new item screen
+        });
+
+        btnOrder.setOnAction(v -> {
+            OrderManager omng = new OrderManager(stage); //Go to new item screen
         });
     }
 

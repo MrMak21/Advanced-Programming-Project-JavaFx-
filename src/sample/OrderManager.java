@@ -1,0 +1,122 @@
+package sample;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+import sample.Database.H2JDBCDriver;
+import sample.Entities.Item;
+import sample.Entities.Purchase;
+import sample.Entities.Trader;
+import sample.Enum.Status;
+import sample.Utils.DBUtils;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.UUID;
+
+public class OrderManager {
+
+    private Stage stage;
+    private FXMLLoader loader;
+    private Scene scene1;
+    private Parent root;
+    H2JDBCDriver db;
+
+    Label itemLabel,traderLabel,totalLabel;
+    Button btnPlaceOrder,btnAddItem;
+    ListView itemList,traderList;
+
+    private ArrayList<Item> shoppingList;
+
+    public OrderManager(Stage stage) {
+        this.stage = stage;
+        initializeViews();
+    }
+
+    private void initializeViews() {
+        setUpView();
+        db = DBUtils.getDb();
+
+        btnPlaceOrder = (Button) stage.getScene().lookup("#btnOrder");
+        btnAddItem = (Button) stage.getScene().lookup("#btnAddItem");
+        itemLabel = (Label) stage.getScene().lookup("#item_label");
+        traderLabel = (Label) stage.getScene().lookup("#trader_label");
+        totalLabel = (Label) stage.getScene().lookup("#items_total");
+
+        itemList = (ListView) stage.getScene().lookup("#item_list");
+        traderList = (ListView) stage.getScene().lookup("#traders_list");
+
+
+        itemList.getItems().addAll(db.getAllItems());
+        traderList.getItems().addAll(db.getAllTraders());
+
+        shoppingList = new ArrayList<>();
+
+
+        setUpListeners();
+    }
+
+    private void setUpListeners() {
+        itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                itemLabel.setText("Item: " + ((Item) newValue).getName());
+            }
+        });
+
+        traderList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                traderLabel.setText("Trader: " + ((Trader) newValue).getName());
+            }
+        });
+
+        btnAddItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Item selected = (Item) itemList.getSelectionModel().getSelectedItem();
+                addItemToList(selected);
+                totalLabel.setText("Total items: " + shoppingList.size());
+            }
+        });
+
+        btnPlaceOrder.setOnAction(v -> {
+            placeOrder();
+        });
+    }
+
+    private void placeOrder() {
+        if (shoppingList.size() > 0 && traderList.getSelectionModel().getSelectedItem() != null) {
+            String traderId = ((Trader) traderList.getSelectionModel().getSelectedItem()).getId();
+            Purchase pur = new Purchase(UUID.randomUUID().toString(),shoppingList,db.getTraderById(traderId), Status.SENT);
+            db.addPurchase(pur);
+            MainScreenManager mng = new MainScreenManager(stage);
+        } else {
+            System.out.println("Please select items & trader");
+        }
+    }
+
+    private void addItemToList(Item item) {
+        shoppingList.add(item);
+    }
+
+    private void setUpView() {
+        loader = new FXMLLoader(getClass().getResource("layouts/new_order.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setTitle("New item");
+        scene1 = new Scene(root, 600, 400);
+        stage.setScene(scene1);
+    }
+}
