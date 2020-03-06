@@ -4,6 +4,7 @@ import sample.Entities.Item;
 import sample.Entities.Purchase;
 import sample.Entities.PurchaseLine;
 import sample.Entities.Trader;
+import sample.Utils.DateUtils;
 import sample.Utils.StatusUtils;
 
 import java.sql.*;
@@ -245,6 +246,34 @@ public class H2JDBCDriver {
         return null;
     }
 
+    public ArrayList<Purchase> getPayPurchases() {
+        String sql = "SELECT * FROM PURCHASES WHERE PURCHASES.STATUS = 3 ";
+        ArrayList<Purchase> purchases = new ArrayList<>();
+
+        ResultSet rs = executeQuery(sql);
+
+        try {
+            while (rs.next()) {
+                String id = rs.getString("ID");
+                String traderId = rs.getString("TRADERID");
+                int status = rs.getInt("STATUS");
+                String payDate = rs.getString("PAYDATE");
+                String sendDate = rs.getString("SENTDATE");
+                String approvedDate = rs.getString("APPROVEDDATE");
+
+                purchases.add(new Purchase(id,getTraderById(traderId), StatusUtils.fromInt(status),sendDate,approvedDate,payDate));
+            }
+
+            stmt.close();
+            conn.close();
+            return purchases;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<Purchase> getPendingPurchases() {
         String sql = "SELECT * FROM PURCHASES WHERE PURCHASES.STATUS = 2 ";
         ArrayList<Purchase> purchases = new ArrayList<>();
@@ -412,7 +441,7 @@ public class H2JDBCDriver {
 
     public void addPurchase(Purchase purchase) {
         String sql = "INSERT INTO PURCHASES " +
-                " VALUES ('" + purchase.getId() +"','" + purchase.getmTrader().getId() +"'," + StatusUtils.fromStatus(purchase.getStatus())+ "," + null + "," + null + "," + null + ")";
+                " VALUES ('" + purchase.getId() +"','" + purchase.getmTrader().getId() +"'," + StatusUtils.fromStatus(purchase.getStatus())+ ", '" + DateUtils.getDate() + "' ," + null + "," + null + ")";
 
         executeUpdateWrapper(sql);
         for (Item item : purchase.getItemList()) {
@@ -429,13 +458,13 @@ public class H2JDBCDriver {
     }
 
     public void acceptOrder(Purchase purchase) {
-        String sql = "UPDATE PURCHASES SET STATUS = 3 WHERE ID = '" + purchase.getId() + "'";
+        String sql = "UPDATE PURCHASES SET STATUS = 3 , APPROVEDDATE = '" + DateUtils.getDate() + "'  WHERE ID = '" + purchase.getId() + "'";
 
         executeUpdateWrapper(sql);
     }
 
     public void declineOrder(Purchase purchase) {
-        String sql = "UPDATE PURCHASES SET STATUS = 5 WHERE ID = '" + purchase.getId() + "'";
+        String sql = "UPDATE PURCHASES SET STATUS = 5 , APPROVEDDATE = '" + DateUtils.getDate() + "' WHERE ID = '" + purchase.getId() + "'";
 
         executeUpdateWrapper(sql);
     }

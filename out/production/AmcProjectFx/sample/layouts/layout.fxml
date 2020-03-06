@@ -18,4 +18,6 @@
 
     </VBox>
 
+    <Button fx:id="btn_pay_orders" GridPane.columnIndex="2" GridPane.rowIndex="2" text="Pay orders: 0"/>
+
 </GridPane>
