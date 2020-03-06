@@ -423,6 +423,24 @@ public class H2JDBCDriver {
         executeUpdateWrapper(sql);
     }
 
+    public void acceptOrder(Purchase purchase) {
+        String sql = "UPDATE PURCHASES SET STATUS = 3 WHERE ID = '" + purchase.getId() + "'";
+
+        executeUpdateWrapper(sql);
+    }
+
+    public void declineOrder(Purchase purchase) {
+        String sql = "UPDATE PURCHASES SET STATUS = 5 WHERE ID = '" + purchase.getId() + "'";
+
+        executeUpdateWrapper(sql);
+    }
+
+    public void payOrder(Purchase purchase) {
+        String sql = "UPDATE PURCHASES SET STATUS = 4 WHERE ID = '" + purchase.getId() + "'";
+
+        executeUpdateWrapper(sql);
+    }
+
     public ArrayList<Item> getPurchaseItems(String id) {
         ArrayList<PurchaseLine> mLines = getPurchaseLinesForOrder(id);
         ArrayList<Item> mItems = new ArrayList<>();

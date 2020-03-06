@@ -1,6 +1,7 @@
 package sample.Utils;
 
 
+import javafx.stage.Stage;
 import sample.Enum.Status;
 
 public class StatusUtils {
@@ -19,6 +20,9 @@ public class StatusUtils {
             case 4: {
                 return Status.DELIVERED;
             }
+            case 5: {
+                return Status.DECLINED;
+            }
             default:
                 return Status.SENT;
         }
@@ -30,6 +34,7 @@ public class StatusUtils {
             case PENDING: return 2;
             case APPROVED: return 3;
             case DELIVERED: return 4;
+            case DECLINED: return 5;
             default: return -1;
         }
     }

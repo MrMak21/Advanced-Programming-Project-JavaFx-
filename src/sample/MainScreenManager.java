@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +25,9 @@ public class MainScreenManager {
     private Parent root;
     H2JDBCDriver db;
 
-    private Button btnTrader,btnItem,btnOrder;
+    ListView<Purchase> list;
+
+    private Button btnTrader,btnItem,btnOrder,btnOrderDetails;
 
     public MainScreenManager(Stage stage) {
         this.stage = stage;
@@ -37,9 +41,10 @@ public class MainScreenManager {
         btnTrader = (Button) root.lookup("#btn_New_Trader");
         btnItem = (Button) root.lookup("#btn_New_Item");
         btnOrder = (Button) root.lookup("#btn_New_Order");
+        btnOrderDetails = (Button) root.lookup("#btnOrderDetails");
 
 
-        ListView<Purchase> list = (ListView<Purchase>) root.lookup("#list");
+        list = (ListView<Purchase>) root.lookup("#list");
         list.getItems().addAll(db.getPendingPurchases());
 
         setUpListeners();
@@ -73,6 +78,19 @@ public class MainScreenManager {
         btnOrder.setOnAction(v -> {
             OrderManager omng = new OrderManager(stage); //Go to new item screen
         });
+
+
+        btnOrderDetails.setOnAction(v -> {
+            if (list.getSelectionModel().getSelectedItem() != null) {
+                purchaseDetails(list.getSelectionModel().getSelectedItem());
+            } else {
+                System.out.println("Please select order to proceed");
+            }
+        });
+    }
+
+    private void purchaseDetails(Purchase purchase) {
+        OrderDetailManager omg = new OrderDetailManager(stage,purchase);
     }
 
 

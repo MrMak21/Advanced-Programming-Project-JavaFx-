@@ -4,6 +4,7 @@ public enum Status {
     SENT,
     PENDING,
     APPROVED,
-    DELIVERED
+    DELIVERED,
+    DECLINED
 }
 
