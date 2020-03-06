@@ -274,6 +274,34 @@ public class H2JDBCDriver {
         return null;
     }
 
+    public ArrayList<Purchase> getHistoryPurchases() {
+        String sql = "SELECT * FROM PURCHASES WHERE PURCHASES.STATUS != 1 AND PURCHASES.STATUS != 2 AND PURCHASES.STATUS != 3  ";
+        ArrayList<Purchase> purchases = new ArrayList<>();
+
+        ResultSet rs = executeQuery(sql);
+
+        try {
+            while (rs.next()) {
+                String id = rs.getString("ID");
+                String traderId = rs.getString("TRADERID");
+                int status = rs.getInt("STATUS");
+                String sendDate = rs.getString("SENTDATE");
+                String approvedDate = rs.getString("APPROVEDDATE");
+                String payDate = rs.getString("PAYDATE");
+
+                purchases.add(new Purchase(id,getTraderById(traderId), StatusUtils.fromInt(status),sendDate,approvedDate,payDate));
+            }
+
+            stmt.close();
+            conn.close();
+            return purchases;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<Purchase> getPendingPurchases() {
         String sql = "SELECT * FROM PURCHASES WHERE PURCHASES.STATUS = 2 ";
         ArrayList<Purchase> purchases = new ArrayList<>();

@@ -107,7 +107,12 @@ public class OrderManager extends Manager {
         });
 
         btnPlaceOrder.setOnAction(v -> {
-            placeOrder();
+            if (shoppingList.size() == 0) {
+                errorLabel.setTextFill(Color.RED);
+                errorLabel.setText("Select at least 1 item");
+            } else {
+                placeOrder();
+            }
         });
 
         btnBack.setOnAction(v -> {

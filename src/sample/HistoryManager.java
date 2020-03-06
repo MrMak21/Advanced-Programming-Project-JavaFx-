@@ -45,7 +45,7 @@ public class HistoryManager extends Manager {
         approvedLabel = (Label) stage.getScene().getRoot().lookup("#history_approved_date");
         payDate = (Label) stage.getScene().getRoot().lookup("#history_pay_date");
 
-        historyList.getItems().addAll(db.getPayPurchases());
+        historyList.getItems().addAll(db.getHistoryPurchases());
 
         setUpListeners();
     }

@@ -59,18 +59,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>columnIndex</find>
-      <find>getOrder</find>
-      <find>getPurchaseLines</find>
-      <find>layouts/layout.fxml</find>
-      <find>getSe</find>
-      <find>getPend</find>
-      <find>create table</find>
-      <find>insert into Purc</find>
-    </findStrings>
-  </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
@@ -242,17 +230,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java</url>
-          <line>474</line>
+          <line>502</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java</url>
-          <line>468</line>
+          <line>496</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java</url>
-          <line>462</line>
+          <line>490</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
