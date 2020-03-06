@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.Database.H2JDBCDriver;
 import sample.Entities.Item;
@@ -17,6 +18,7 @@ import sample.Entities.Purchase;
 import sample.Entities.Trader;
 import sample.Enum.Status;
 import sample.Utils.DBUtils;
+import sample.Utils.TextUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ public class OrderManager {
     Label itemLabel,traderLabel,totalLabel;
     Button btnPlaceOrder,btnAddItem;
     ListView itemList,traderList;
+    TextField quantity;
 
     private ArrayList<Item> shoppingList;
 
@@ -50,6 +53,7 @@ public class OrderManager {
         itemLabel = (Label) stage.getScene().lookup("#item_label");
         traderLabel = (Label) stage.getScene().lookup("#trader_label");
         totalLabel = (Label) stage.getScene().lookup("#items_total");
+        quantity = (TextField) stage.getScene().lookup("#quantity_input");
 
         itemList = (ListView) stage.getScene().lookup("#item_list");
         traderList = (ListView) stage.getScene().lookup("#traders_list");
@@ -82,9 +86,12 @@ public class OrderManager {
         btnAddItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Item selected = (Item) itemList.getSelectionModel().getSelectedItem();
-                addItemToList(selected);
-                totalLabel.setText("Total items: " + shoppingList.size());
+                if (!TextUtils.isNullOrEmpty(quantity.getText())) {
+                    Item selected = (Item) itemList.getSelectionModel().getSelectedItem();
+                    selected.setQuantity(Integer.valueOf(quantity.getText()));
+                    addItemToList(selected);
+                    totalLabel.setText("Total items: " + shoppingList.size());
+                }
             }
         });
 
@@ -94,9 +101,9 @@ public class OrderManager {
     }
 
     private void placeOrder() {
-        if (shoppingList.size() > 0 && traderList.getSelectionModel().getSelectedItem() != null) {
+        if (shoppingList.size() > 0 && traderList.getSelectionModel().getSelectedItem() != null ) {
             String traderId = ((Trader) traderList.getSelectionModel().getSelectedItem()).getId();
-            Purchase pur = new Purchase(UUID.randomUUID().toString(),shoppingList,db.getTraderById(traderId), Status.SENT);
+            Purchase pur = new Purchase(UUID.randomUUID().toString(),shoppingList,db.getTraderById(traderId), Status.PENDING);
             db.addPurchase(pur);
             MainScreenManager mng = new MainScreenManager(stage);
         } else {

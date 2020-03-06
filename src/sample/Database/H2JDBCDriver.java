@@ -63,6 +63,7 @@ public class H2JDBCDriver {
                     "(id VARCHAR(255) NOT NULL, " +
                     " itemId VARCHAR(255), " +
                     " purchaseId VARCHAR(255), " +
+                    " quantity INTEGER, " +
                     " PRIMARY KEY ( id ))";
 
             executeUpdateWrapper(createPurchaseLinesTable);
@@ -242,6 +243,33 @@ public class H2JDBCDriver {
         return null;
     }
 
+    public ArrayList<Purchase> getPendingPurchases() {
+        String sql = "SELECT * FROM PURCHASES WHERE PURCHASES.STATUS = 2 ";
+        ArrayList<Purchase> purchases = new ArrayList<>();
+
+        ResultSet rs = executeQuery(sql);
+
+        try {
+            while (rs.next()) {
+                String id = rs.getString("ID");
+                String traderId = rs.getString("TRADERID");
+                int status = rs.getInt("STATUS");
+                String payDate = rs.getString("PAYDATE");
+                String deliveryDate = rs.getString("DELIVERYDATE");
+
+                purchases.add(new Purchase(id,getTraderById(traderId), StatusUtils.fromInt(status),payDate,deliveryDate));
+            }
+
+            stmt.close();
+            conn.close();
+            return purchases;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<Trader> getAllTraders() {
         String sql = "SELECT * FROM TRADERS";
         ArrayList<Trader> traders = new ArrayList<>();
@@ -322,8 +350,9 @@ public class H2JDBCDriver {
                 String purId = rs.getString("ID");
                 String itemId = rs.getString("ITEMID");
                 String purchaseId = rs.getString("PURCHASEID");
+                int quantity = rs.getInt("QUANTITY");
 
-                PurchaseLine pl = new PurchaseLine(purId,itemId,purchaseId);
+                PurchaseLine pl = new PurchaseLine(purId,itemId,purchaseId,quantity);
                 lines.add(pl);
             }
 
@@ -382,16 +411,27 @@ public class H2JDBCDriver {
 
         executeUpdateWrapper(sql);
         for (Item item : purchase.getItemList()) {
-            PurchaseLine line = new PurchaseLine(UUID.randomUUID().toString(),item.getId(),purchase.getId());
+            PurchaseLine line = new PurchaseLine(UUID.randomUUID().toString(),item.getId(),purchase.getId(),item.getQuantity());
             addPurchaseLine(line);
         }
     }
 
     public void addPurchaseLine(PurchaseLine line) {
         String sql = "INSERT INTO PURCHASELINES " +
-                " VALUES ('" + line.getPurchaseLineId() +"','" + line.getItemId() +"','" + line.getPurchaseId() + "')";
+                " VALUES ('" + line.getPurchaseLineId() +"','" + line.getItemId() +"','" + line.getPurchaseId() + "', " + line.getQuantity() + " )";
 
         executeUpdateWrapper(sql);
+    }
+
+    public ArrayList<Item> getPurchaseItems(String id) {
+        ArrayList<PurchaseLine> mLines = getPurchaseLinesForOrder(id);
+        ArrayList<Item> mItems = new ArrayList<>();
+
+        for (PurchaseLine mLine : mLines) {
+            Item itm = getItemFromId(mLine.getItemId());
+            mItems.add(itm);
+        }
+        return mItems;
     }
 }
 

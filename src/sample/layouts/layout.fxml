@@ -6,7 +6,7 @@
 
 <GridPane xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER" hgap="10" vgap="10">
 
-    <Label fx:id="list_lavel" GridPane.rowIndex="0" GridPane.columnIndex="0" text="Orders"/>
+    <Label fx:id="list_lavel" GridPane.rowIndex="0" GridPane.columnIndex="0" text="Pending orders"/>
     <ListView fx:id="list" GridPane.rowIndex="1" GridPane.columnIndex="0" maxHeight="200" maxWidth="Infinity" />
     <Button fx:id="btn2" alignment="center" text="second"  GridPane.columnIndex="0" GridPane.rowIndex="2"/>
 

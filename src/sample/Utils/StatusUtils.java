@@ -11,10 +11,10 @@ public class StatusUtils {
                 return Status.SENT;
             }
             case 2: {
-                return Status.APPROVED;
+                return Status.PENDING;
             }
             case 3: {
-                return Status.ACCEPTED;
+                return Status.APPROVED;
             }
             case 4: {
                 return Status.DELIVERED;
@@ -27,8 +27,8 @@ public class StatusUtils {
     public static int fromStatus(Status sts) {
         switch (sts) {
             case SENT: return 1;
-            case APPROVED: return 2;
-            case ACCEPTED: return 3;
+            case PENDING: return 2;
+            case APPROVED: return 3;
             case DELIVERED: return 4;
             default: return -1;
         }

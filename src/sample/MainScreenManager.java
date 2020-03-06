@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import sample.Database.H2JDBCDriver;
+import sample.Entities.Purchase;
 import sample.Entities.Trader;
 import sample.Utils.DBUtils;
 
@@ -38,8 +39,8 @@ public class MainScreenManager {
         btnOrder = (Button) root.lookup("#btn_New_Order");
 
 
-        ListView<Trader> list = (ListView<Trader>) root.lookup("#list");
-        list.getItems().addAll(db.getAllTraders());
+        ListView<Purchase> list = (ListView<Purchase>) root.lookup("#list");
+        list.getItems().addAll(db.getPendingPurchases());
 
         setUpListeners();
     }

@@ -6,11 +6,19 @@ public class PurchaseLine {
 
     private String itemId;
     private String purchaseId;
+    private int quantity;
 
     public PurchaseLine(String purchaseLineId, String itemId, String purchaseId) {
         this.purchaseLineId = purchaseLineId;
         this.itemId = itemId;
         this.purchaseId = purchaseId;
+    }
+
+    public PurchaseLine(String purchaseLineId, String itemId, String purchaseId, int quantity) {
+        this.purchaseLineId = purchaseLineId;
+        this.itemId = itemId;
+        this.purchaseId = purchaseId;
+        this.quantity = quantity;
     }
 
     public String getPurchaseLineId() {
@@ -35,5 +43,13 @@ public class PurchaseLine {
 
     public void setPurchaseId(String purchaseId) {
         this.purchaseId = purchaseId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

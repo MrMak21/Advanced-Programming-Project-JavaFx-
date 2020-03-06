@@ -1,6 +1,7 @@
 package sample.Entities;
 
 import sample.Enum.Status;
+import sample.Utils.DBUtils;
 
 import java.util.ArrayList;
 
@@ -97,6 +98,18 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return  mTrader.getName() + "   " + status + "   " + payDate + "   " + deliveryDate;
+        return  mTrader.getName() + "   " + status + "   " + payDate + "   " + deliveryDate + "   items: "
+                + DBUtils.getDb().getPurchaseItems(getId()).size() + "   "
+                + getItemTotal(getId()) ;
+    }
+
+    public double getItemTotal(String id) {
+        double total = 0.0;
+        ArrayList<PurchaseLine> lines = DBUtils.getDb().getPurchaseLinesForOrder(id);
+        for (PurchaseLine line : lines) {
+            Item itm = DBUtils.getDb().getItemFromId(line.getItemId());
+            total += line.getQuantity() * itm.getPrice();
+        }
+        return total;
     }
 }
