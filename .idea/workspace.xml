@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Entities/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Entities/Purchase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Entities/PurchaseLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Entities/PurchaseLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Enum/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Enum/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MainScreenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainScreenManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/OrderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Utils/StatusUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Utils/StatusUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/layouts/layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/layouts/layout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/layouts/new_order.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/layouts/new_order.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -95,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Entities/Purchase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="110" column="57" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
+            <state relative-caret-position="268">
+              <caret line="107" column="72" selection-start-line="107" selection-start-column="72" selection-end-line="107" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,39 +102,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/layouts/new_order.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="36" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="36" />
+            <state relative-caret-position="425">
+              <caret line="25" column="29" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="29" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Enum/Status.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Utils/StatusUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/OrderManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="106" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
+            <state relative-caret-position="274">
+              <caret line="99" column="20" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3962#3963#0" expanded="true" />
+                <element signature="e#4278#4279#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -151,8 +125,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="424" column="33" selection-start-line="424" selection-start-column="33" selection-end-line="424" selection-end-column="33" />
+            <state relative-caret-position="7">
+              <caret line="388" column="9" lean-forward="true" selection-start-line="388" selection-start-column="9" selection-end-line="388" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,11 +200,11 @@
         <option value="$PROJECT_DIR$/src/sample/Enum/Status.java" />
         <option value="$PROJECT_DIR$/src/sample/Utils/StatusUtils.java" />
         <option value="$PROJECT_DIR$/src/sample/MainScreenManager.java" />
+        <option value="$PROJECT_DIR$/src/sample/Entities/PurchaseLine.java" />
+        <option value="$PROJECT_DIR$/src/sample/Entities/Purchase.java" />
+        <option value="$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java" />
         <option value="$PROJECT_DIR$/src/sample/layouts/new_order.fxml" />
         <option value="$PROJECT_DIR$/src/sample/OrderManager.java" />
-        <option value="$PROJECT_DIR$/src/sample/Entities/PurchaseLine.java" />
-        <option value="$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java" />
-        <option value="$PROJECT_DIR$/src/sample/Entities/Purchase.java" />
       </list>
     </option>
   </component>
@@ -452,12 +426,12 @@
       <workItem from="1583317269752" duration="11437000" />
       <workItem from="1583333093615" duration="4510000" />
       <workItem from="1583397650127" duration="5288000" />
-      <workItem from="1583493670590" duration="3118000" />
+      <workItem from="1583493670590" duration="3628000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25655000" />
+    <option name="totallyTimeSpent" value="26165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -472,8 +446,8 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33152762" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33152762" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -513,31 +487,59 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/OrderManager.java</url>
-          <line>106</line>
+          <line>113</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java</url>
-          <line>413</line>
+          <line>414</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java</url>
-          <line>432</line>
+          <url>file://$PROJECT_DIR$/src/sample/Entities/Purchase.java</url>
+          <line>110</line>
           <properties />
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="line.getQuantity()" language="JAVA" />
+        <watch expression="itm.getPrice()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>itm.getPrice()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>line.getQuantity()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>line.getQuantity()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>itm.getPrice()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>item.getQuantity()</expression-string>
         <language-id>JAVA</language-id>
@@ -697,25 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/layouts/new_order.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="36" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/OrderManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="106" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3962#3963#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Entities/PurchaseLine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
@@ -738,22 +721,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Entities/Purchase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="424" column="33" selection-start-line="424" selection-start-column="33" selection-end-line="424" selection-end-column="33" />
+        <state relative-caret-position="268">
+          <caret line="107" column="72" selection-start-line="107" selection-start-column="72" selection-end-line="107" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Entities/Purchase.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Database/H2JDBCDriver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="110" column="57" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
+        <state relative-caret-position="7">
+          <caret line="388" column="9" lean-forward="true" selection-start-line="388" selection-start-column="9" selection-end-line="388" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/layouts/new_order.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="29" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/OrderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="99" column="20" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4278#4279#0" expanded="true" />
           </folding>
         </state>
       </provider>

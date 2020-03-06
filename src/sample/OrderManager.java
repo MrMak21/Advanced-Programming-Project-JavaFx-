@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.Database.H2JDBCDriver;
 import sample.Entities.Item;
@@ -32,7 +33,7 @@ public class OrderManager {
     private Parent root;
     H2JDBCDriver db;
 
-    Label itemLabel,traderLabel,totalLabel;
+    Label itemLabel,traderLabel,totalLabel,errorLabel;
     Button btnPlaceOrder,btnAddItem;
     ListView itemList,traderList;
     TextField quantity;
@@ -53,6 +54,7 @@ public class OrderManager {
         itemLabel = (Label) stage.getScene().lookup("#item_label");
         traderLabel = (Label) stage.getScene().lookup("#trader_label");
         totalLabel = (Label) stage.getScene().lookup("#items_total");
+        errorLabel = (Label) stage.getScene().lookup("#error_label");
         quantity = (TextField) stage.getScene().lookup("#quantity_input");
 
         itemList = (ListView) stage.getScene().lookup("#item_list");
@@ -73,6 +75,7 @@ public class OrderManager {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 itemLabel.setText("Item: " + ((Item) newValue).getName());
+                errorLabel.setText("");
             }
         });
 
@@ -91,6 +94,11 @@ public class OrderManager {
                     selected.setQuantity(Integer.valueOf(quantity.getText()));
                     addItemToList(selected);
                     totalLabel.setText("Total items: " + shoppingList.size());
+                    errorLabel.setText("");
+                    quantity.setText("");
+                } else {
+                    errorLabel.setTextFill(Color.RED);
+                    errorLabel.setText("Please add quantity");
                 }
             }
         });
@@ -122,7 +130,7 @@ public class OrderManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.setTitle("New item");
+        stage.setTitle("New order");
         scene1 = new Scene(root, 600, 400);
         stage.setScene(scene1);
     }

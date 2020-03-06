@@ -23,6 +23,8 @@
     <Label fx:id="item_label" GridPane.rowIndex="4" GridPane.columnIndex="0" text="Item: "/>
     <TextField fx:id="quantity_input" GridPane.columnIndex="0" GridPane.rowIndex="5" promptText="quantity"/>
 
+    <Label fx:id="error_label" GridPane.rowIndex="5" GridPane.columnIndex="1" text=""/>
+
 
     <Button fx:id="btnOrder" alignment="center" text="Place Order" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
 
