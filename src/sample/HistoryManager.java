@@ -15,7 +15,7 @@ import sample.Utils.DBUtils;
 
 import java.io.IOException;
 
-public class PaymentCenterManager extends Manager {
+public class HistoryManager extends Manager {
 
     private Stage stage;
     private FXMLLoader loader;
@@ -23,11 +23,11 @@ public class PaymentCenterManager extends Manager {
     private Parent root;
     H2JDBCDriver db;
 
-    ListView payList,itemsList;
-    Button btnPay,back;
-    Label traderLabel,sentLabel,approvedLabel;
+    ListView historyList,itemsList;
+    Button back;
+    Label traderLabel,sentLabel,approvedLabel,payDate;
 
-    public PaymentCenterManager(Stage stage) {
+    public HistoryManager(Stage stage) {
         this.stage = stage;
         initializeViews();
     }
@@ -37,28 +37,28 @@ public class PaymentCenterManager extends Manager {
         setUpView();
         db = DBUtils.getDb();
 
-        payList = (ListView) stage.getScene().getRoot().lookup("#pay_list");
-        itemsList = (ListView) stage.getScene().getRoot().lookup("#pay_item_list");
-        btnPay = (Button) stage.getScene().getRoot().lookup("#btn_pay");
-        back = (Button) stage.getScene().getRoot().lookup("#btn_back");
-        traderLabel = (Label) stage.getScene().getRoot().lookup("#pay_trader");
-        sentLabel = (Label) stage.getScene().getRoot().lookup("#pay_sent_date");
-        approvedLabel = (Label) stage.getScene().getRoot().lookup("#pay_approved_date");
+        historyList = (ListView) stage.getScene().getRoot().lookup("#history_list");
+        itemsList = (ListView) stage.getScene().getRoot().lookup("#history_item_list");
+        back = (Button) stage.getScene().getRoot().lookup("#history_btn_back");
+        traderLabel = (Label) stage.getScene().getRoot().lookup("#history_trader");
+        sentLabel = (Label) stage.getScene().getRoot().lookup("#history_sent_date");
+        approvedLabel = (Label) stage.getScene().getRoot().lookup("#history_approved_date");
+        payDate = (Label) stage.getScene().getRoot().lookup("#history_pay_date");
 
-        payList.getItems().addAll(db.getPayPurchases());
+        historyList.getItems().addAll(db.getPayPurchases());
 
         setUpListeners();
     }
 
     @Override
     public void setUpView() {
-        loader = new FXMLLoader(getClass().getResource("layouts/payment_center.fxml"));
+        loader = new FXMLLoader(getClass().getResource("layouts/history_orders.fxml"));
         try {
             root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.setTitle("Payment center");
+        stage.setTitle("History");
         scene1 = new Scene(root, 750, 450);
         stage.setScene(scene1);
         stage.show();
@@ -66,8 +66,7 @@ public class PaymentCenterManager extends Manager {
 
     @Override
     public void setUpListeners() {
-
-        payList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+        historyList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 Purchase purchase = ((Purchase) newValue);
@@ -78,22 +77,13 @@ public class PaymentCenterManager extends Manager {
                 traderLabel.setText("Trader: " + purchase.getmTrader().getName());
                 sentLabel.setText("Sent: " + purchase.getSendDate());
                 approvedLabel.setText("Approved: " + purchase.getApprovedDate());
-            }
-        });
-
-        btnPay.setOnAction(v -> {
-            if (payList.getSelectionModel().getSelectedItem() != null){
-                db.payOrder((Purchase) payList.getSelectionModel().getSelectedItem());
-                MainScreenManager msm = new MainScreenManager(stage);
-            } else {
-                System.out.println("Select purchase to pay");
+                payDate.setText("Paid: " + purchase.getPayDate());
             }
         });
 
         back.setOnAction(v -> {
             onBackPressed();
         });
-
     }
 
     @Override

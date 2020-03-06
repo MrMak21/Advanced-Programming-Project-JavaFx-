@@ -27,7 +27,7 @@ public class MainScreenManager {
 
     ListView<Purchase> list;
 
-    private Button btnTrader,btnItem,btnOrder,btnOrderDetails,btnPay;
+    private Button btnTrader,btnItem,btnOrder,btnOrderDetails,btnPay,btnHistory;
 
     public MainScreenManager(Stage stage) {
         this.stage = stage;
@@ -43,6 +43,7 @@ public class MainScreenManager {
         btnOrder = (Button) root.lookup("#btn_New_Order");
         btnOrderDetails = (Button) root.lookup("#btnOrderDetails");
         btnPay = (Button) root.lookup("#btn_pay_orders");
+        btnHistory = (Button) root.lookup("#btn_history_orders");
 
 
         list = (ListView<Purchase>) root.lookup("#list");
@@ -91,6 +92,10 @@ public class MainScreenManager {
 
         btnPay.setOnAction( v -> {
             PaymentCenterManager pcm = new PaymentCenterManager(stage);
+        });
+
+        btnHistory.setOnAction(v -> {
+            HistoryManager hm = new HistoryManager(stage);
         });
     }
 

@@ -257,9 +257,9 @@ public class H2JDBCDriver {
                 String id = rs.getString("ID");
                 String traderId = rs.getString("TRADERID");
                 int status = rs.getInt("STATUS");
-                String payDate = rs.getString("PAYDATE");
                 String sendDate = rs.getString("SENTDATE");
                 String approvedDate = rs.getString("APPROVEDDATE");
+                String payDate = rs.getString("PAYDATE");
 
                 purchases.add(new Purchase(id,getTraderById(traderId), StatusUtils.fromInt(status),sendDate,approvedDate,payDate));
             }
@@ -470,7 +470,7 @@ public class H2JDBCDriver {
     }
 
     public void payOrder(Purchase purchase) {
-        String sql = "UPDATE PURCHASES SET STATUS = 4 WHERE ID = '" + purchase.getId() + "'";
+        String sql = "UPDATE PURCHASES SET STATUS = 4 , PAYDATE = '" + DateUtils.getDate() + "' WHERE ID = '" + purchase.getId() + "'";
 
         executeUpdateWrapper(sql);
     }

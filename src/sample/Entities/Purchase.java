@@ -25,9 +25,9 @@ public class Purchase {
         this.id = id;
         this.mTrader = mTrader;
         this.status = status;
-        this.payDate = payDate;
         this.sendDate = sendDate;
         this.approvedDate = approvedDate;
+        this.payDate = payDate;
         itemList = new ArrayList<>();
     }
 

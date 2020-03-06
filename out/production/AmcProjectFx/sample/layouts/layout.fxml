@@ -15,6 +15,7 @@
         <Button fx:id="btn_New_Order" alignment="center" text="New Order" prefWidth="100" textAlignment="CENTER" />
         <Button fx:id="btn_New_Item" alignment="center" text="New Item" prefWidth="100" textAlignment="CENTER" />
         <Button fx:id="btn_New_Trader" alignment="center" text="New Trader" prefWidth="100" textAlignment="CENTER"  />
+        <Button fx:id="btn_history_orders" alignment="center" text="History orders" prefWidth="100" textAlignment="CENTER"  />
 
     </VBox>
 

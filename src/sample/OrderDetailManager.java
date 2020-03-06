@@ -48,6 +48,8 @@ public class OrderDetailManager extends Manager {
         trader.setText("Trader: " + purchase.getmTrader().getName());
         total.setText("Total items: " + purchase.getmTrader().getName());
 
+        itemList.getItems().addAll(db.getPurchaseItems(purchase.getId()));
+
         setUpListeners();
     }
 
