@@ -53,8 +53,9 @@ public class H2JDBCDriver {
                     "(id VARCHAR(255) NOT NULL, " +
                     " traderId VARCHAR(255), " +
                     " status INTEGER, " +
+                    " sentDate VARCHAR(255), " +
+                    " approvedDate VARCHAR(255), " +
                     " payDate VARCHAR(255)," +
-                    " deliveryDate VARCHAR(255), " +
                     " PRIMARY KEY ( id ))";
 
             executeUpdateWrapper(createPurchasesTable);
@@ -228,9 +229,10 @@ public class H2JDBCDriver {
                 String traderId = rs.getString("TRADERID");
                 int status = rs.getInt("STATUS");
                 String payDate = rs.getString("PAYDATE");
-                String deliveryDate = rs.getString("DELIVERYDATE");
+                String sendDate = rs.getString("SENTDATE");
+                String approvedDate = rs.getString("APPROVEDDATE");
 
-                purchases.add(new Purchase(id,getTraderById(traderId), StatusUtils.fromInt(status),payDate,deliveryDate));
+                purchases.add(new Purchase(id,getTraderById(traderId), StatusUtils.fromInt(status),sendDate,approvedDate,payDate));
             }
 
             stmt.close();
@@ -255,9 +257,10 @@ public class H2JDBCDriver {
                 String traderId = rs.getString("TRADERID");
                 int status = rs.getInt("STATUS");
                 String payDate = rs.getString("PAYDATE");
-                String deliveryDate = rs.getString("DELIVERYDATE");
+                String sendDate = rs.getString("SENTDATE");
+                String approvedDate = rs.getString("APPROVEDDATE");
 
-                purchases.add(new Purchase(id,getTraderById(traderId), StatusUtils.fromInt(status),payDate,deliveryDate));
+                purchases.add(new Purchase(id,getTraderById(traderId), StatusUtils.fromInt(status),sendDate,approvedDate,payDate));
             }
 
             stmt.close();
@@ -304,9 +307,11 @@ public class H2JDBCDriver {
                 String traderId = rs.getString("TRADERID");
                 int status = rs.getInt("STATUS");
                 String payDate = rs.getString("PAYDATE");
-                String deliveryDate = rs.getString("DELIVERYDATE");
+                String sendDate = rs.getString("SENTDATE");
+                String approvedDate = rs.getString("APPROVEDDATE");
 
-                Purchase pur = new Purchase(purId,getTraderById(traderId), StatusUtils.fromInt(status),payDate,deliveryDate);
+
+                Purchase pur = new Purchase(purId,getTraderById(traderId), StatusUtils.fromInt(status),sendDate,approvedDate,payDate);
                 stmt.close();
                 conn.close();
                 return pur;
@@ -407,7 +412,7 @@ public class H2JDBCDriver {
 
     public void addPurchase(Purchase purchase) {
         String sql = "INSERT INTO PURCHASES " +
-                " VALUES ('" + purchase.getId() +"','" + purchase.getmTrader().getId() +"'," + StatusUtils.fromStatus(purchase.getStatus())+ "," + null + "," + null + "," + ")";
+                " VALUES ('" + purchase.getId() +"','" + purchase.getmTrader().getId() +"'," + StatusUtils.fromStatus(purchase.getStatus())+ "," + null + "," + null + "," + null + ")";
 
         executeUpdateWrapper(sql);
         for (Item item : purchase.getItemList()) {

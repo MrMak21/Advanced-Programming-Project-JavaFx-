@@ -12,7 +12,8 @@ public class Purchase {
     private Trader mTrader;
     private Status status;
     private String payDate;
-    private String deliveryDate;
+    private String sendDate;
+    private String approvedDate;
 
 
     public Purchase(Trader mTrader) {
@@ -20,12 +21,13 @@ public class Purchase {
         this.mTrader = mTrader;
     }
 
-    public Purchase(String id, Trader mTrader, Status status, String payDate, String deliveryDate) {
+    public Purchase(String id, Trader mTrader, Status status, String sendDate, String approvedDate,String payDate) {
         this.id = id;
         this.mTrader = mTrader;
         this.status = status;
         this.payDate = payDate;
-        this.deliveryDate = deliveryDate;
+        this.sendDate = sendDate;
+        this.approvedDate = approvedDate;
         itemList = new ArrayList<>();
     }
 
@@ -88,17 +90,25 @@ public class Purchase {
         this.payDate = payDate;
     }
 
-    public String getDeliveryDate() {
-        return deliveryDate;
+    public String getSendDate() {
+        return sendDate;
     }
 
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
+    public void setSendDate(String sendDate) {
+        this.sendDate = sendDate;
+    }
+
+    public String getApprovedDate() {
+        return approvedDate;
+    }
+
+    public void setApprovedDate(String approvedDate) {
+        this.approvedDate = approvedDate;
     }
 
     @Override
     public String toString() {
-        return  mTrader.getName() + "   " + status + "   " + payDate + "   " + deliveryDate + "   items: "
+        return  mTrader.getName() + "   " + status + "   " + sendDate + "   " + approvedDate + "   items: "
                 + DBUtils.getDb().getPurchaseItems(getId()).size() + "   "
                 + getItemTotal(getId()) ;
     }
