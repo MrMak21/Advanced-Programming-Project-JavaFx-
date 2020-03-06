@@ -1,0 +1,23 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER" hgap="10" vgap="10">
+
+    <Label fx:id="list_lavel" GridPane.rowIndex="0" GridPane.columnIndex="0" text="Pending orders"/>
+    <ListView fx:id="list" GridPane.rowIndex="1" GridPane.columnIndex="0" maxHeight="200" maxWidth="Infinity" />
+    <Button fx:id="btnOrderDetails" alignment="center" text="Select order"  GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+
+    <VBox fx:id="button_group"  GridPane.columnIndex="2" GridPane.rowIndex="1" >
+
+        <Button fx:id="btn_New_Order" alignment="center" text="New Order" prefWidth="100" textAlignment="CENTER" />
+        <Button fx:id="btn_New_Item" alignment="center" text="New Item" prefWidth="100" textAlignment="CENTER" />
+        <Button fx:id="btn_New_Trader" alignment="center" text="New Trader" prefWidth="100" textAlignment="CENTER"  />
+
+    </VBox>
+
+    <Button fx:id="btn_pay_orders" GridPane.columnIndex="2" GridPane.rowIndex="2" text="Pay orders: 0"/>
+
+</GridPane>

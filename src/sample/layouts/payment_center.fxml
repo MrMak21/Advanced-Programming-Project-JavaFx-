@@ -1,0 +1,25 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<GridPane xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER" vgap="10">
+
+    <ListView fx:id="pay_list" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <ListView fx:id="pay_item_list" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <VBox fx:id="pay_details" GridPane.rowIndex="0" GridPane.columnIndex="3">
+        <GridPane alignment="CENTER">
+            <Label fx:id="pay_trader" GridPane.rowIndex="0" GridPane.columnIndex="0" text="Trader: "/>
+            <Label fx:id="pay_sent_date" GridPane.rowIndex="2" GridPane.columnIndex="0" text="Sent date: "/>
+            <Label fx:id="pay_approved_date" GridPane.rowIndex="3" GridPane.columnIndex="0" text="Approved date: "/>
+        </GridPane>
+
+    </VBox>
+
+
+    <Button fx:id="btn_pay" GridPane.rowIndex="1" GridPane.columnIndex="3" text="Pay order"/>
+
+
+</GridPane>
