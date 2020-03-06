@@ -17,7 +17,7 @@ import sample.Utils.DBUtils;
 
 import java.io.IOException;
 
-public class MainScreenManager {
+public class MainScreenManager extends Manager {
 
     private Stage stage;
     private FXMLLoader loader;
@@ -34,7 +34,8 @@ public class MainScreenManager {
         initializeViews();
     }
 
-    private void initializeViews() {
+    @Override
+    public void initializeViews() {
         setUpView();
         db = DBUtils.getDb();
         root = stage.getScene().getRoot();
@@ -49,10 +50,13 @@ public class MainScreenManager {
         list = (ListView<Purchase>) root.lookup("#list");
         list.getItems().addAll(db.getPendingPurchases());
 
+        btnPay.setText("Pay orders: " + db.getPayPurchases().size());
+
         setUpListeners();
     }
 
-    private void setUpView() {
+    @Override
+    public void setUpView() {
         loader = new FXMLLoader(getClass().getResource("layouts/layout.fxml"));
         try {
             root = loader.load();
@@ -65,7 +69,8 @@ public class MainScreenManager {
         stage.show();
     }
 
-    private void setUpListeners() {
+    @Override
+    public void setUpListeners() {
         btnTrader.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -97,6 +102,11 @@ public class MainScreenManager {
         btnHistory.setOnAction(v -> {
             HistoryManager hm = new HistoryManager(stage);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
     private void purchaseDetails(Purchase purchase) {

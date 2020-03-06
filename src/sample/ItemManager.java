@@ -15,7 +15,7 @@ import sample.Utils.TextUtils;
 import java.io.IOException;
 import java.util.UUID;
 
-public class ItemManager {
+public class ItemManager extends Manager {
 
     private Stage stage;
     private FXMLLoader loader;
@@ -23,7 +23,7 @@ public class ItemManager {
     private Parent root;
     H2JDBCDriver db;
 
-    private Button btnAddItem;
+    private Button btnAddItem,btnBack;
     private TextField itemName,itemCode,itemPrice;
 
     public ItemManager(Stage stage) {
@@ -31,11 +31,13 @@ public class ItemManager {
         initializeViews();
     }
 
-    private void initializeViews() {
+    @Override
+    public void initializeViews() {
         setUpView();
         db = DBUtils.getDb();
 
         btnAddItem = (Button) stage.getScene().lookup("#btn_add_item");
+        btnBack = (Button) stage.getScene().lookup("#btn_item_back");
         itemName = (TextField) stage.getScene().lookup("#name_input");
         itemCode = (TextField) stage.getScene().lookup("#code_input");
         itemPrice = (TextField) stage.getScene().lookup("#price_input");
@@ -43,7 +45,8 @@ public class ItemManager {
         setUpListeners();
     }
 
-    private void setUpListeners() {
+    @Override
+    public void setUpListeners() {
         btnAddItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -56,9 +59,19 @@ public class ItemManager {
                 }
             }
         });
+
+        btnBack.setOnAction(v -> {
+            onBackPressed();
+        });
     }
 
-    private void setUpView() {
+    @Override
+    public void onBackPressed() {
+        MainScreenManager msm = new MainScreenManager(stage);
+    }
+
+    @Override
+    public void setUpView() {
         loader = new FXMLLoader(getClass().getResource("layouts/new_item.fxml"));
         try {
             root = loader.load();

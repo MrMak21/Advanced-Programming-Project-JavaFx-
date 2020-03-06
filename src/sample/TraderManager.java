@@ -16,9 +16,9 @@ import sample.Utils.TextUtils;
 import java.io.IOException;
 import java.util.UUID;
 
-public class TraderManager {
+public class TraderManager extends Manager {
 
-    private Button btnAdd;
+    private Button btnAdd,btnBack;
     private TextField traderName,traderCompany;
 
     private Stage stage;
@@ -32,18 +32,21 @@ public class TraderManager {
         initializeViews();
     }
 
-    private void initializeViews() {
+    @Override
+    public void initializeViews() {
         setUpView();
         db = DBUtils.getDb();
 
         btnAdd = (Button) stage.getScene().lookup("#btn_add_trader");
+        btnBack = (Button) stage.getScene().lookup("#btn_trader_back");
         traderName = (TextField) stage.getScene().lookup("#name_input");
         traderCompany = (TextField) stage.getScene().lookup("#company_input");
 
         setUpListeners();
     }
 
-    private void setUpView() {
+    @Override
+    public void setUpView() {
         loader = new FXMLLoader(getClass().getResource("layouts/new_trader.fxml"));
         try {
             root = loader.load();
@@ -55,7 +58,8 @@ public class TraderManager {
         stage.setScene(scene1);
     }
 
-    private void setUpListeners() {
+    @Override
+    public void setUpListeners() {
         btnAdd.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -69,6 +73,15 @@ public class TraderManager {
                 }
             }
         });
+
+        btnBack.setOnAction(v -> {
+            onBackPressed();
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        MainScreenManager msm = new MainScreenManager(stage);
     }
 
 

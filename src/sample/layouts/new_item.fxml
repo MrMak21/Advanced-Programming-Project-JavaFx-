@@ -45,5 +45,6 @@
     </HBox>
 
     <Button fx:id="btn_add_item" text="Add item" alignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="0" prefWidth="270"/>
+    <Button fx:id="btn_item_back" text="Back" alignment="CENTER" GridPane.rowIndex="4" GridPane.columnIndex="0" />
 
 </GridPane>

@@ -35,5 +35,6 @@
     </HBox>
 
     <Button fx:id="btn_add_trader" text="Add trader" alignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="0" prefWidth="270"/>
+    <Button fx:id="btn_trader_back" text="Back" alignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="0" />
 
 </GridPane>

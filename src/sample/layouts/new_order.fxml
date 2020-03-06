@@ -27,5 +27,6 @@
 
 
     <Button fx:id="btnOrder" alignment="center" text="Place Order" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+    <Button fx:id="btn_order_Back" alignment="center" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
 </GridPane>

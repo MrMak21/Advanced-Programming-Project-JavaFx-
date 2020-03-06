@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class OrderManager {
+public class OrderManager extends Manager {
 
     private Stage stage;
     private FXMLLoader loader;
@@ -34,7 +34,7 @@ public class OrderManager {
     H2JDBCDriver db;
 
     Label itemLabel,traderLabel,totalLabel,errorLabel;
-    Button btnPlaceOrder,btnAddItem;
+    Button btnPlaceOrder,btnAddItem,btnBack;
     ListView itemList,traderList;
     TextField quantity;
 
@@ -45,12 +45,14 @@ public class OrderManager {
         initializeViews();
     }
 
-    private void initializeViews() {
+    @Override
+    public void initializeViews() {
         setUpView();
         db = DBUtils.getDb();
 
         btnPlaceOrder = (Button) stage.getScene().lookup("#btnOrder");
         btnAddItem = (Button) stage.getScene().lookup("#btnAddItem");
+        btnBack = (Button) stage.getScene().lookup("#btn_order_Back");
         itemLabel = (Label) stage.getScene().lookup("#item_label");
         traderLabel = (Label) stage.getScene().lookup("#trader_label");
         totalLabel = (Label) stage.getScene().lookup("#items_total");
@@ -70,7 +72,8 @@ public class OrderManager {
         setUpListeners();
     }
 
-    private void setUpListeners() {
+    @Override
+    public void setUpListeners() {
         itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
@@ -106,6 +109,15 @@ public class OrderManager {
         btnPlaceOrder.setOnAction(v -> {
             placeOrder();
         });
+
+        btnBack.setOnAction(v -> {
+            onBackPressed();
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        MainScreenManager msm = new MainScreenManager(stage);
     }
 
     private void placeOrder() {
@@ -123,7 +135,8 @@ public class OrderManager {
         shoppingList.add(item);
     }
 
-    private void setUpView() {
+    @Override
+    public void setUpView() {
         loader = new FXMLLoader(getClass().getResource("layouts/new_order.fxml"));
         try {
             root = loader.load();
