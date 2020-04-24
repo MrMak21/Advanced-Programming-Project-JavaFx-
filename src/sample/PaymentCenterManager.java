@@ -22,6 +22,7 @@ public class PaymentCenterManager extends Manager {
     private Scene scene1;
     private Parent root;
     H2JDBCDriver db;
+    FileManager fm;
 
     ListView payList,itemsList;
     Button btnPay,back;
@@ -35,7 +36,8 @@ public class PaymentCenterManager extends Manager {
     @Override
     public void initializeViews() {
         setUpView();
-        db = DBUtils.getDb();
+//        db = DBUtils.getDb();
+        fm = new FileManager();
 
         payList = (ListView) stage.getScene().getRoot().lookup("#pay_list");
         itemsList = (ListView) stage.getScene().getRoot().lookup("#pay_item_list");
@@ -45,7 +47,7 @@ public class PaymentCenterManager extends Manager {
         sentLabel = (Label) stage.getScene().getRoot().lookup("#pay_sent_date");
         approvedLabel = (Label) stage.getScene().getRoot().lookup("#pay_approved_date");
 
-        payList.getItems().addAll(db.getPayPurchases());
+        payList.getItems().addAll(fm.getPayPurchases());
 
         setUpListeners();
     }
@@ -73,7 +75,7 @@ public class PaymentCenterManager extends Manager {
                 Purchase purchase = ((Purchase) newValue);
 
                 itemsList.getItems().clear();
-                itemsList.getItems().addAll(db.getPurchaseItems(purchase.getId()));
+                itemsList.getItems().addAll(fm.getPurchaseItems(purchase.getId()));
 
                 traderLabel.setText("Trader: " + purchase.getmTrader().getName());
                 sentLabel.setText("Sent: " + purchase.getSendDate());
@@ -83,7 +85,8 @@ public class PaymentCenterManager extends Manager {
 
         btnPay.setOnAction(v -> {
             if (payList.getSelectionModel().getSelectedItem() != null){
-                db.payOrder((Purchase) payList.getSelectionModel().getSelectedItem());
+//                db.payOrder((Purchase) payList.getSelectionModel().getSelectedItem());
+                fm.payOrder((Purchase) payList.getSelectionModel().getSelectedItem());
                 MainScreenManager msm = new MainScreenManager(stage);
             } else {
                 System.out.println("Select purchase to pay");

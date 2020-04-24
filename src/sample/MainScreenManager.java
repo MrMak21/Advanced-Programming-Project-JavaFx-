@@ -24,6 +24,7 @@ public class MainScreenManager extends Manager {
     private Scene scene1;
     private Parent root;
     H2JDBCDriver db;
+    FileManager fm;
 
     ListView<Purchase> list;
 
@@ -37,7 +38,9 @@ public class MainScreenManager extends Manager {
     @Override
     public void initializeViews() {
         setUpView();
-        db = DBUtils.getDb();
+//        db = DBUtils.getDb();
+        fm = new FileManager();
+
         root = stage.getScene().getRoot();
         btnTrader = (Button) root.lookup("#btn_New_Trader");
         btnItem = (Button) root.lookup("#btn_New_Item");
@@ -48,9 +51,9 @@ public class MainScreenManager extends Manager {
 
 
         list = (ListView<Purchase>) root.lookup("#list");
-        list.getItems().addAll(db.getPendingPurchases());
+        list.getItems().addAll(fm.getPendingPurchases());
 
-        btnPay.setText("Pay orders: " + db.getPayPurchases().size());
+        btnPay.setText("Pay orders: " + fm.getPayPurchases().size());
 
         setUpListeners();
     }
@@ -110,6 +113,7 @@ public class MainScreenManager extends Manager {
     }
 
     private void purchaseDetails(Purchase purchase) {
+        purchase.setItemList(fm.getPurchaseItems(purchase.getId()));
         OrderDetailManager omg = new OrderDetailManager(stage,purchase);
     }
 

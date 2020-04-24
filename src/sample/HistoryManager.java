@@ -22,6 +22,7 @@ public class HistoryManager extends Manager {
     private Scene scene1;
     private Parent root;
     H2JDBCDriver db;
+    FileManager fm;
 
     ListView historyList,itemsList;
     Button back;
@@ -35,7 +36,8 @@ public class HistoryManager extends Manager {
     @Override
     public void initializeViews() {
         setUpView();
-        db = DBUtils.getDb();
+//        db = DBUtils.getDb();
+        fm = new FileManager();
 
         historyList = (ListView) stage.getScene().getRoot().lookup("#history_list");
         itemsList = (ListView) stage.getScene().getRoot().lookup("#history_item_list");
@@ -45,7 +47,7 @@ public class HistoryManager extends Manager {
         approvedLabel = (Label) stage.getScene().getRoot().lookup("#history_approved_date");
         payDate = (Label) stage.getScene().getRoot().lookup("#history_pay_date");
 
-        historyList.getItems().addAll(db.getHistoryPurchases());
+        historyList.getItems().addAll(fm.getHistoryPurchases());
 
         setUpListeners();
     }
@@ -72,7 +74,8 @@ public class HistoryManager extends Manager {
                 Purchase purchase = ((Purchase) newValue);
 
                 itemsList.getItems().clear();
-                itemsList.getItems().addAll(db.getPurchaseItems(purchase.getId()));
+//                itemsList.getItems().addAll(db.getPurchaseItems(purchase.getId()));
+                itemsList.getItems().addAll(fm.getPurchaseItems(purchase.getId()));
 
                 traderLabel.setText("Trader: " + purchase.getmTrader().getName());
                 sentLabel.setText("Sent: " + purchase.getSendDate());

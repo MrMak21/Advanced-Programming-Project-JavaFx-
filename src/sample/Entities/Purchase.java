@@ -1,6 +1,7 @@
 package sample.Entities;
 
 import sample.Enum.Status;
+import sample.FileManager;
 import sample.Utils.DBUtils;
 
 import java.util.ArrayList;
@@ -15,10 +16,13 @@ public class Purchase {
     private String sendDate;
     private String approvedDate;
 
+    private FileManager fm;
+
 
     public Purchase(Trader mTrader) {
         itemList = new ArrayList<>();
         this.mTrader = mTrader;
+        fm = new FileManager();
     }
 
     public Purchase(String id, Trader mTrader, Status status, String sendDate, String approvedDate,String payDate) {
@@ -29,6 +33,7 @@ public class Purchase {
         this.approvedDate = approvedDate;
         this.payDate = payDate;
         itemList = new ArrayList<>();
+        fm = new FileManager();
     }
 
     public Purchase(String id, ArrayList<Item> itemList, Trader mTrader, Status status) {
@@ -36,6 +41,17 @@ public class Purchase {
         this.itemList = itemList;
         this.mTrader = mTrader;
         this.status = status;
+        fm = new FileManager();
+    }
+
+    public Purchase(String id, ArrayList<Item> itemList, Trader mTrader, Status status,String sendDate) {
+        this.id = id;
+        this.itemList = itemList;
+        this.mTrader = mTrader;
+        this.status = status;
+        this.sendDate = sendDate;
+        fm = new FileManager();
+
     }
 
     public String getId() {
@@ -109,15 +125,18 @@ public class Purchase {
     @Override
     public String toString() {
         return  mTrader.getName() + "   " + status + "   " + sendDate + "   " + approvedDate + "   items: "
-                + DBUtils.getDb().getPurchaseItems(getId()).size() + "   "
+                + fm.getPurchaseItems(getId()).size() + "   "
                 + getItemTotal(getId()) ;
+//                + DBUtils.getDb().getPurchaseItems(getId()).size() + "   "
     }
 
     public double getItemTotal(String id) {
         double total = 0.0;
-        ArrayList<PurchaseLine> lines = DBUtils.getDb().getPurchaseLinesForOrder(id);
+//        ArrayList<PurchaseLine> lines = DBUtils.getDb().getPurchaseLinesForOrder(id);
+        ArrayList<PurchaseLine> lines = fm.getPurchaseLinesForOrder(id);
         for (PurchaseLine line : lines) {
-            Item itm = DBUtils.getDb().getItemFromId(line.getItemId());
+//            Item itm = DBUtils.getDb().getItemFromId(line.getItemId());
+            Item itm = fm.getItemFromId(line.getItemId());
             total += line.getQuantity() * itm.getPrice();
         }
         return total;

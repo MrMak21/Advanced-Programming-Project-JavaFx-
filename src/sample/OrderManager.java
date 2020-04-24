@@ -19,6 +19,7 @@ import sample.Entities.Purchase;
 import sample.Entities.Trader;
 import sample.Enum.Status;
 import sample.Utils.DBUtils;
+import sample.Utils.DateUtils;
 import sample.Utils.TextUtils;
 
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class OrderManager extends Manager {
     private Scene scene1;
     private Parent root;
     H2JDBCDriver db;
+    FileManager fm;
 
     Label itemLabel,traderLabel,totalLabel,errorLabel;
     Button btnPlaceOrder,btnAddItem,btnBack;
@@ -48,7 +50,8 @@ public class OrderManager extends Manager {
     @Override
     public void initializeViews() {
         setUpView();
-        db = DBUtils.getDb();
+//        db = DBUtils.getDb();
+        fm = new FileManager();
 
         btnPlaceOrder = (Button) stage.getScene().lookup("#btnOrder");
         btnAddItem = (Button) stage.getScene().lookup("#btnAddItem");
@@ -63,8 +66,9 @@ public class OrderManager extends Manager {
         traderList = (ListView) stage.getScene().lookup("#traders_list");
 
 
-        itemList.getItems().addAll(db.getAllItems());
-        traderList.getItems().addAll(db.getAllTraders());
+//        itemList.getItems().addAll(db.getAllItems());
+        itemList.getItems().addAll(fm.getAllItems());
+        traderList.getItems().addAll(fm.getAllTraders());
 
         shoppingList = new ArrayList<>();
 
@@ -128,8 +132,9 @@ public class OrderManager extends Manager {
     private void placeOrder() {
         if (shoppingList.size() > 0 && traderList.getSelectionModel().getSelectedItem() != null ) {
             String traderId = ((Trader) traderList.getSelectionModel().getSelectedItem()).getId();
-            Purchase pur = new Purchase(UUID.randomUUID().toString(),shoppingList,db.getTraderById(traderId), Status.PENDING);
-            db.addPurchase(pur);
+            Purchase pur = new Purchase(UUID.randomUUID().toString(),shoppingList,fm.getTraderById(traderId), Status.PENDING, DateUtils.getDate());
+//            db.addPurchase(pur);
+            fm.addPurchase(pur);
             MainScreenManager mng = new MainScreenManager(stage);
         } else {
             System.out.println("Please select items & trader");

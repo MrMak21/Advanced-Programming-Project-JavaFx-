@@ -26,6 +26,7 @@ public class TraderManager extends Manager {
     private Scene scene1;
     private Parent root;
     H2JDBCDriver db;
+    FileManager fm;
 
     public TraderManager(Stage stage) {
         this.stage = stage;
@@ -35,7 +36,8 @@ public class TraderManager extends Manager {
     @Override
     public void initializeViews() {
         setUpView();
-        db = DBUtils.getDb();
+//        db = DBUtils.getDb();
+        fm = new FileManager();
 
         btnAdd = (Button) stage.getScene().lookup("#btn_add_trader");
         btnBack = (Button) stage.getScene().lookup("#btn_trader_back");
@@ -68,7 +70,8 @@ public class TraderManager extends Manager {
                     System.out.println("Please fill in all the fields");
                 } else {
                     Trader tr = new Trader(UUID.randomUUID().toString(),traderName.getText(),traderCompany.getText());
-                    db.addTrader(tr);
+//                    db.addTrader(tr);
+                    fm.addTrader(tr);
                     MainScreenManager mgr = new MainScreenManager(stage); //Go to main screen
                 }
             }

@@ -22,6 +22,7 @@ public class ItemManager extends Manager {
     private Scene scene1;
     private Parent root;
     H2JDBCDriver db;
+    FileManager fm;
 
     private Button btnAddItem,btnBack;
     private TextField itemName,itemCode,itemPrice;
@@ -34,7 +35,8 @@ public class ItemManager extends Manager {
     @Override
     public void initializeViews() {
         setUpView();
-        db = DBUtils.getDb();
+//        db = DBUtils.getDb();
+        fm = new FileManager();
 
         btnAddItem = (Button) stage.getScene().lookup("#btn_add_item");
         btnBack = (Button) stage.getScene().lookup("#btn_item_back");
@@ -54,7 +56,8 @@ public class ItemManager extends Manager {
                     System.out.println("Please fill in all the fields");
                 } else {
                     Item item = new Item(UUID.randomUUID().toString(),itemName.getText(),itemCode.getText(),0,Double.valueOf(itemPrice.getText()));
-                    db.addItem(item);
+//                    db.addItem(item);
+                    fm.addItem(item);
                     MainScreenManager mgr = new MainScreenManager(stage); //Go to main screen
                 }
             }

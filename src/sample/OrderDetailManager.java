@@ -20,6 +20,7 @@ public class OrderDetailManager extends Manager {
     private Scene scene1;
     private Parent root;
     H2JDBCDriver db;
+    FileManager fm;
 
     private Purchase purchase;
 
@@ -36,7 +37,8 @@ public class OrderDetailManager extends Manager {
     @Override
     public void initializeViews() {
         setUpView();
-        db = DBUtils.getDb();
+//        db = DBUtils.getDb();
+        fm = new FileManager();
 
         btnBack = (Button) stage.getScene().getRoot().lookup("#back_btn");
         btnAccept = (Button) stage.getScene().getRoot().lookup("#btn_accept");
@@ -46,9 +48,9 @@ public class OrderDetailManager extends Manager {
         itemList = (ListView) stage.getScene().getRoot().lookup("#order_details_item_list");
 
         trader.setText("Trader: " + purchase.getmTrader().getName());
-        total.setText("Total items: " + purchase.getmTrader().getName());
+        total.setText("Total items: " + purchase.getItemList().size());
 
-        itemList.getItems().addAll(db.getPurchaseItems(purchase.getId()));
+        itemList.getItems().addAll(fm.getPurchaseItems(purchase.getId()));
 
         setUpListeners();
     }
@@ -83,12 +85,14 @@ public class OrderDetailManager extends Manager {
     }
 
     private void acceptOrder(Purchase purchase) {
-        db.acceptOrder(purchase);
+//        db.acceptOrder(purchase);
+        fm.acceptOrder(purchase);
         onBackPressed();
     }
 
     private void declineOrder(Purchase purchase) {
-        db.declineOrder(purchase);
+//        db.declineOrder(purchase);
+        fm.declineOrder(purchase);
         onBackPressed();
     }
 
