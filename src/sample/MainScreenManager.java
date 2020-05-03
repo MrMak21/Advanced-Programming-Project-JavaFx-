@@ -1,7 +1,6 @@
 package sample;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import sample.Database.H2JDBCDriver;
 import sample.Entities.Purchase;
-import sample.Entities.Trader;
-import sample.Utils.DBUtils;
 
 import java.io.IOException;
 
@@ -23,7 +19,7 @@ public class MainScreenManager extends Manager {
     private FXMLLoader loader;
     private Scene scene1;
     private Parent root;
-    H2JDBCDriver db;
+//    H2JDBCDriver db;
     FileManager fm;
 
     ListView<Purchase> list;

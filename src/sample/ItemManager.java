@@ -8,9 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.Database.H2JDBCDriver;
+
 import sample.Entities.Item;
-import sample.Utils.DBUtils;
+
 import sample.Utils.TextUtils;
 import java.io.IOException;
 import java.util.UUID;
@@ -21,7 +21,7 @@ public class ItemManager extends Manager {
     private FXMLLoader loader;
     private Scene scene1;
     private Parent root;
-    H2JDBCDriver db;
+//    H2JDBCDriver db;
     FileManager fm;
 
     private Button btnAddItem,btnBack;

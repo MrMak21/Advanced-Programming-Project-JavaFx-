@@ -13,12 +13,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.Database.H2JDBCDriver;
+
 import sample.Entities.Item;
 import sample.Entities.Purchase;
 import sample.Entities.Trader;
 import sample.Enum.Status;
-import sample.Utils.DBUtils;
+
 import sample.Utils.DateUtils;
 import sample.Utils.TextUtils;
 
@@ -32,7 +32,7 @@ public class OrderManager extends Manager {
     private FXMLLoader loader;
     private Scene scene1;
     private Parent root;
-    H2JDBCDriver db;
+//    H2JDBCDriver db;
     FileManager fm;
 
     Label itemLabel,traderLabel,totalLabel,errorLabel;

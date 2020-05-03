@@ -3,14 +3,14 @@ package sample;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
-import sample.Database.H2JDBCDriver;
-import sample.Utils.DBUtils;
+
+
 
 
 public class Main extends Application {
 
 
-    private H2JDBCDriver db;
+//    private H2JDBCDriver db;
 
     @Override
     public void start(Stage primaryStage) {
